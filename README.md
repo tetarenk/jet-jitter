@@ -9,6 +9,7 @@ Low level positional offsets can occur between individual snapshot images taken 
 
 Assuming the motion of the jet components is ballistic, we construct a series of linear equations with k ejecta components and i snapshot images, such that,
 
+{\rm&space;RA}_{ik}=\mu_{{\rm&space;ra},k}(t_i-t_{{\rm&space;ej},k})&plus;J_{{\rm&space;ra},i}
 
 ## Requires the following python packages
 * emcee
