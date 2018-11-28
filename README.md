@@ -10,7 +10,9 @@ Assuming the motion of the jet components is ballistic, we construct a series of
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%5Cnonumber%20%7B%5Crm%20RA%7D_%7Bik%7D%26%3D%5Cmu_%7B%7B%5Crm%20ra%7D%2Ck%7D%28t_i-t_%7B%7B%5Crm%20ej%7D%2Ck%7D%29&plus;J_%7B%7B%5Crm%20ra%7D%2Ci%7D%2C%5C%5C%5Cnonumber%20%26%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%5C%2C%7B%5Crm%20and%7D%5C%5C%5Cnonumber%20%7B%5Crm%20Dec%7D_%7Bik%7D%26%3D%5Cmu_%7B%7B%5Crm%20dec%7D%2Ck%7D%28t_i-t_%7B%7B%5Crm%20ej%7D%2Ck%7D%29&plus;J_%7B%7B%5Crm%20dec%7D%2Ci%7D.%5C%5C%5Cnonumber%20%5Cend%7Balign%7D)
 
-Here, ![equation](https://latex.codecogs.com/gif.latex?%5Cmu_%7B%7B%5Crm%20ra/dec%7D%2Ck%7D) represents the proper motions in RA/dec
+Here ![equation](https://latex.codecogs.com/gif.latex?%5Cmu_%7B%7B%5Crm%20ra/dec%7D%2Ck%7D) represents the proper motions in RA/dec, and ![equation](https://latex.codecogs.com/gif.latex?t_%7B%7B%5Crm%20ej%7D%2Ck%7D) represents the ejection time of the kth jet component, while ![equation](https://latex.codecogs.com/gif.latex?J_%7B%7B%5Crm%20ra/dec%7D%2Ci%7D) are the jitter parameters representing an offset in position for each ith image.
+
+This code uses an MCMC algorithm, implemented by the emcee package, to simultaneously solve for all of the proper motions, ejections times and jitter parameters. This code also offers the option to downweight components that have lower confidence.
 
 ## Requires the following python packages
 * emcee
