@@ -4,7 +4,7 @@ in images produced from the Very Long Baseline Array (VLBA) radio frequency tele
 
 This code is implemented in the publication Miller-Jones et al. 2019, Nature, XX, XX-XX.
 
-##Requires the following python packages
+## Requires the following python packages
 * emcee
 * numpy
 * scipy
