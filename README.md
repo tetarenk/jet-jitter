@@ -18,13 +18,12 @@ This code uses an MCMC algorithm (implemented by the emcee package) to simultane
 Input: 
 * Data file containing jet component positions (bs249_uvmultifit_ptsrc_v3_flags_update.txt) - columns are UT time string, RA offset, error in RA offset, Dec offset, error in Dec offset (all in arcsec), flux, error in flux (all in Jy), component name, confidence flag (H=high confidence, M=medium confidence, L=low confidence, B=blended component, D=dont include in fit). 
 
-<img src="docs/VLBA_positions_before.png" width="250">
-<img src="docs/VLBA_positions_after.png" width="250">
-<img src="docs/VLBA_positionfull.png" width="250">
-<img src="docs/mcmc_PA.png" width="250">
-
 Output:
 * Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions versus time, corrected angular separation versus time, position angles of jet components.
+
+<img src="docs/VLBA_positions_before.png" width="250"><img src="docs/VLBA_positions_after.png" width="250">
+<img src="docs/VLBA_positionfull.png" width="250"><img src="docs/mcmc_PA.png" width="250">
+
 * Best-fit parameter file (bestp_param.txt):
   * Columns are best fit value, 1 sigma lower confidence interval error, 1 sigma upper confidence interval error
   * Rows cycle through all jet components displaying the RA proper motion (mas/hr), Dec proper motion (mas/hr) and ejection time (decimal hrs) in sequence, followed by cycling through each time bin displaying the RA jitter and Dec jitter (both in mas) in sequence.
