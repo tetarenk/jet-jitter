@@ -424,42 +424,6 @@ for kk in range(0,len(Timea)):
     tinitlst.append(guess[3*kk+2])
 tinit=np.array(tinitlst)
 
-#plot initial guess over data
-print 'Plotting initial guess over data...'
-ncomp=len(Timea)
-ncompplot=ncomp-1
-matplotlib.rcParams['xtick.direction'] = 'in'
-matplotlib.rcParams['ytick.direction'] = 'in'
-matplotlib.rcParams['xtick.top'] = 'on'
-matplotlib.rcParams['xtick.top'] = 'on'
-matplotlib.rcParams['ytick.right'] = 'on'
-matplotlib.rcParams['ytick.left'] = 'on'
-fig=plt.figure(figsize=(19,25.5))
-for ii in range(0,ncompplot):
-	model_ra=jitter_model([guess[3*ii+3],guess[3*ii+1+3],guess[3*ii+2+3]]+jitt,times_unique,times_unique,0,1)[0]
-	model_dec=jitter_model([guess[3*ii+3],guess[3*ii+1+3],guess[3*ii+2+3]]+jitt,times_unique,times_unique,0,1)[1]
-	ax=fig.add_subplot(ncompplot,2,2*ii+1)
-	ax.plot(Timea[ii+1],Data[2*ii+2],marker='o')
-	ax.plot(times_unique,model_ra,marker='o',ls='',color='r')
-	ax=fig.add_subplot(ncompplot,2,2*ii+2)
-	ax.plot(Timea[ii+1],Data[2*ii+1+2],marker='o')
-	ax.plot(times_unique,model_dec,marker='o',ls='',color='r')
-plt.savefig(path_dir+'comp_initial.png')
-print 'Plot saved to '+path_dir+'comp_initial.png'
-
-
-core_model_ra=jitter_model([guess[0],guess[1],guess[2]]+jitt,times_unique,times_unique,0,1)[0]
-core_model_dec=jitter_model([guess[0],guess[1],guess[2]]+jitt,times_unique,times_unique,0,1)[1]
-fig=plt.figure(figsize=(19,15.5))
-ax1=fig.add_subplot(1,2,1)
-ax1.plot(Timea[0],Data[0],marker='o',color='m')
-ax1.plot(times_unique,core_model_ra,marker='o',ls='',color='r')
-ax2=fig.add_subplot(122,sharex=ax1)
-ax2.plot(Timea[0],Data[1],marker='o',color='m')
-ax2.plot(times_unique,core_model_dec,marker='o',ls='',color='r')
-plt.savefig(path_dir+'core_initial.png')
-print 'Plot saved to '+path_dir+'core_initial.png'
-
 
 #setting up sampler
 print 'Setting up sampler...'
@@ -534,41 +498,15 @@ np.savetxt(path_dir+'chains.txt',sampler.flatchain)
 
 print("Mean acceptance fraction: {0:.3f}".format(np.mean(sampler.acceptance_fraction)))
 
-#plot final bestfit model
-print 'Plotting best-fit model on top of data...'
-bestp_final_list=bestp_final.tolist()
-jitt_best=bestp_final_list[3*ncomp:]
-ncomp=len(Timea)
-ncompplot=ncomp-1
-fig=plt.figure(figsize=(19,25.5))
-for ii in range(0,ncompplot):
-	model_ra=jitter_model([bestp_final[3*ii+3],bestp_final[3*ii+1+3],bestp_final[3*ii+2+3]]+jitt_best,times_unique,times_unique,0,1)[0]
-	model_dec=jitter_model([bestp_final[3*ii+3],bestp_final[3*ii+1+3],bestp_final[3*ii+2+3]]+jitt_best,times_unique,times_unique,0,1)[1]
-	ax=fig.add_subplot(ncompplot,2,2*ii+1)
-	ax.plot(Timea[ii+1],Data[2*ii+2],marker='o')
-	ax.plot(times_unique,model_ra,marker='o',ls='',color='r')
-	ax=fig.add_subplot(ncompplot,2,2*ii+2)
-	ax.plot(Timea[ii+1],Data[2*ii+1+2],marker='o')
-	ax.plot(times_unique,model_dec,marker='o',ls='',color='r')
-plt.savefig(path_dir+'comp_final.png')
-print 'Plot saved to '+path_dir+'comp_final.png'
-
-core_model_ra=jitter_model([bestp_final[0],bestp_final[1],bestp_final[2]]+jitt_best,times_unique,\
-  times_unique,0,1)[0]
-core_model_dec=jitter_model([bestp_final[0],bestp_final[1],bestp_final[2]]+jitt_best,times_unique,\
-  times_unique,0,1)[1]
-fig=plt.figure(figsize=(19,15.5))
-ax1=fig.add_subplot(1,2,1)
-ax1.plot(Timea[0],Data[0],marker='o',color='m')
-ax1.plot(times_unique,core_model_ra,marker='o',ls='',color='r')
-ax2=fig.add_subplot(122,sharex=ax1)
-ax2.plot(Timea[0],Data[1],marker='o',color='m')
-ax2.plot(times_unique,core_model_dec,marker='o',ls='',color='r')
-plt.savefig(path_dir+'core_final.png')
-print 'Plot saved to '+path_dir+'core_final.png'
 
 #diagnostic plots
 print 'Making diagnostic plots...'
+matplotlib.rcParams['xtick.direction'] = 'in'
+matplotlib.rcParams['ytick.direction'] = 'in'
+matplotlib.rcParams['xtick.top'] = 'on'
+matplotlib.rcParams['xtick.top'] = 'on'
+matplotlib.rcParams['ytick.right'] = 'on'
+matplotlib.rcParams['ytick.left'] = 'on'
 figa = plt.figure(figsize=(22,15.5))
 for i in range(0,ncomp*3):
     plt.subplot(ncomp,3,i+1)
