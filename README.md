@@ -18,7 +18,10 @@ This code uses an MCMC algorithm (implemented by the emcee package) to simultane
 Input: 
 * Data file containing jet component positions (bs249_uvmultifit_ptsrc_v3_flags_update.txt) - columns are UT time string, RA offset, error in RA offset, Dec offset, error in Dec offset (all in arcsec), flux, error in flux (all in Jy), component name, confidence flag (H=high confidence, M=medium confidence, L=low confidence, B=blended component, D=dont include in fit). 
 
-<img src="docs/mcmc_PA.png" width="100">
+<img src="docs/VLBA_positions_before.png" width="250">
+<img src="docs/VLBA_positions_after.png" width="250">
+<img src="docs/VLBA_positionfull.png" width="250">
+<img src="docs/mcmc_PA.png" width="250">
 
 Output:
 * Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions versus time, corrected angular separation versus time, position angles of jet components.
