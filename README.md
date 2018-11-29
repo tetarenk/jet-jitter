@@ -4,7 +4,7 @@ Python code that uses an Bayesian Markov-Chain Monte Carlo (MCMC) algorithm to m
 This code is used for analysis of the data presented in the publication [Miller-Jones et al. 2019, Nature, XX, XX-XX]().
 
 ## Brief Description
-Low level positional offsets can occur between individual snapshot images taken with the VLBA due to short timescale trophospheric phase variations, and as a side-effect of the self-calibration process shifting the source positons by a fraction of the synthesized beam. These offsets effect our ability to track the motion of resolved jet components in images of V404 Cygni, and in turn prevent us from accurately measuring the proper motions and ejection times of the jet component.
+Low level positional offsets can occur between individual snapshot images taken with the VLBA due to short timescale trophospheric phase variations, and as a side-effect of the self-calibration process shifting the source positons by a fraction of the synthesized beam. These offsets effect our ability to track the motion of resolved jet components in images of V404 Cygni, and in turn prevent us from accurately measuring the proper motions and ejection times of the jet components.
 
 Assuming the motion of the jet components is ballistic, we construct a series of linear equations with *k* ejecta components and *i* snapshot images, such that,
 
