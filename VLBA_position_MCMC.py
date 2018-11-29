@@ -387,7 +387,7 @@ N3[:,1],N3[:,3],N4[:,1],N4[:,3],S4[:,1],S4[:,3],N5[:,1],N5[:,3],S5[:,1],S5[:,3],
 Error=[core[:,2],core[:,4],N[:,2],N[:,4],S[:,2],S[:,4],N1[:,2],N1[:,4],S1[:,2],S1[:,4],N2[:,2],N2[:,4],S2[:,2],S2[:,4],\
 N3[:,2],N3[:,4],N4[:,2],N4[:,4],S4[:,2],S4[:,4],N5[:,2],N5[:,4],S5[:,2],S5[:,4],N6[:,2],N6[:,4]]
 FLAGs=[core[:,5],N[:,5],S[:,5],N1[:,5],S1[:,5],N2[:,5],S2[:,5],N3[:,5],N4[:,5],S4[:,5],N5[:,5],S5[:,5],N6[:,5]]
-
+comp_names=['core','N','S','N1','S1','N2','S2','N3','N4','S4','N5','S5','N6']
 
 
 #set RA/Dec initial jitter params (in mas) to the core offset over time
@@ -428,6 +428,12 @@ tinit=np.array(tinitlst)
 print 'Plotting initial guess over data...'
 ncomp=len(Timea)
 ncompplot=ncomp-1
+matplotlib.rcParams['xtick.direction'] = 'in'
+matplotlib.rcParams['ytick.direction'] = 'in'
+matplotlib.rcParams['xtick.top'] = 'on'
+matplotlib.rcParams['xtick.top'] = 'on'
+matplotlib.rcParams['ytick.right'] = 'on'
+matplotlib.rcParams['ytick.left'] = 'on'
 fig=plt.figure(figsize=(19,25.5))
 for ii in range(0,ncompplot):
 	model_ra=jitter_model([guess[3*ii+3],guess[3*ii+1+3],guess[3*ii+2+3]]+jitt,times_unique,times_unique,0,1)[0]
@@ -589,38 +595,16 @@ col=matplotlib.cm.get_cmap('jet',500)
 print col(coll(ii))
 for ii in range(0,len(Timea)):
     if ii==0:
-        ax1.errorbar(Timea[ii],Data[2*ii],yerr=Error[2*ii],marker='o',color='k',ls='')
-        ax2.errorbar(Timea[ii],Data[2*ii+1],yerr=Error[2*ii+1],marker='o',color='k',ls='')
+        ax1.errorbar(Timea[ii],Data[2*ii],yerr=Error[2*ii],marker='o',color='k',ls='',label=comp_names[ii])
+        ax2.errorbar(Timea[ii],Data[2*ii+1],yerr=Error[2*ii+1],marker='o',color='k',ls='',label=comp_names[ii])
     else:
-        ax1.errorbar(Timea[ii],Data[2*ii],yerr=Error[2*ii],marker='o',color=col(coll(ii)),ls='')
-        ax2.errorbar(Timea[ii],Data[2*ii+1],yerr=Error[2*ii+1],marker='o',color=col(coll(ii)),ls='')
-ax1.text(12.5,-0.5,'N')
-ax1.text(12,0.1,'S')
-ax1.text(12,-1.5,'N1')
-ax1.text(13,0.7,'S1')
-ax1.text(13.1,-0.4,'N2')
-ax1.text(14,0.3,'S2')
-ax1.text(13.8,-0.3,'N3')
-ax1.text(14.3,-1,'N5')
-ax1.text(13.3,0.2,'S4')
-ax1.text(14.3,-0.3,'N4')
-ax1.text(11.5,0.1,'S5')
-ax1.text(13.2,-0.6,'N6')
-#
-ax2.text(12.5,2,'N')
-ax2.text(12,-1,'S')
-ax2.text(12.5,6,'N1')
-ax2.text(13,-1.6,'S1')
-ax2.text(13.2,2,'N2')
-ax2.text(14,-2,'S2')
-ax2.text(14,3,'N3')
-ax2.text(14.3,0.8,'N5')
-ax2.text(13.3,-1.8,'S4')
-ax2.text(14.1,0.,'N4')
-ax2.text(11.5,-1,'S5')
-ax2.text(13.5,1,'N6')
+        ax1.errorbar(Timea[ii],Data[2*ii],yerr=Error[2*ii],marker='o',color=col(coll(ii)),ls='',label=comp_names[ii])
+        ax2.errorbar(Timea[ii],Data[2*ii+1],yerr=Error[2*ii+1],marker='o',color=col(coll(ii)),ls='',label=comp_names[ii])
 ax1.set_ylim(-2.5,1)
 ax2.set_ylim(-4.,8)
+ax1.set_xlim(10.2,14.5)
+ax2.legend(loc='top left')
+ax1.legend(loc='top left')
 ax1.set_ylabel('RA offset (mas)',fontsize=15)
 ax2.set_ylabel('Dec offset (mas)',fontsize=15)
 ax2.set_xlabel('Time on 22/06/2016 (hrs)',fontsize=15)
@@ -675,43 +659,20 @@ for ii in range(0,ncomp):
     model_dec=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,\
       times_unique)[1]
     if ii==0:
-        ax1.errorbar(Timea[ii],np.concatenate(Data2[2*ii]),yerr=Error[2*ii],marker='o',color='k',ls='')
-        ax2.errorbar(Timea[ii],np.concatenate(Data2[2*ii+1]),yerr=Error[2*ii+1],marker='o',color='k',ls='')
+        ax1.errorbar(Timea[ii],np.concatenate(Data2[2*ii]),yerr=Error[2*ii],marker='o',color='k',ls='',label=comp_names[ii])
+        ax2.errorbar(Timea[ii],np.concatenate(Data2[2*ii+1]),yerr=Error[2*ii+1],marker='o',color='k',ls='',label=comp_names[ii])
         ax1.plot(times_unique,model_ra,marker='',ls='-',color='k')
         ax2.plot(times_unique,model_dec,marker='',ls='-',color='k')
     else:
-        ax1.errorbar(Timea[ii],np.concatenate(Data2[2*ii]),yerr=Error[2*ii],marker='o',color=col(coll(ii)),ls='')
-        ax2.errorbar(Timea[ii],np.concatenate(Data2[2*ii+1]),yerr=Error[2*ii+1],marker='o',color=col(coll(ii)),ls='')
+        ax1.errorbar(Timea[ii],np.concatenate(Data2[2*ii]),yerr=Error[2*ii],marker='o',color=col(coll(ii)),ls='',label=comp_names[ii])
+        ax2.errorbar(Timea[ii],np.concatenate(Data2[2*ii+1]),yerr=Error[2*ii+1],marker='o',color=col(coll(ii)),ls='',label=comp_names[ii])
         ax1.plot(times_unique,model_ra,marker='',ls='-',color=col(coll(ii)))
         ax2.plot(times_unique,model_dec,marker='',ls='-',color=col(coll(ii)))
-
-ax1.text(12.5,-0.5,'N')
-ax1.text(12,0.1,'S')
-ax1.text(12,-1.5,'N1')
-ax1.text(13,0.7,'S1')
-ax1.text(13.1,-0.4,'N2')
-ax1.text(14,0.3,'S2')
-ax1.text(13.8,-0.3,'N3')
-ax1.text(14.3,-1,'N5')
-ax1.text(13.3,0.2,'S4')
-ax1.text(14.3,-0.3,'N4')
-ax1.text(11.5,0.1,'S5')
-ax1.text(13.2,-0.6,'N6')
-#
-ax2.text(12.5,2,'N')
-ax2.text(12,-1,'S')
-ax2.text(12.5,6,'N1')
-ax2.text(13,-1.6,'S1')
-ax2.text(13.2,2,'N2')
-ax2.text(14,-2,'S2')
-ax2.text(14,3,'N3')
-ax2.text(14.3,0.8,'N5')
-ax2.text(13.3,-1.8,'S4')
-ax2.text(14.1,0.,'N4')
-ax2.text(11.5,-1,'S5')
-ax2.text(13.5,1,'N6')
 ax1.set_ylim(-2.5,1)
 ax2.set_ylim(-4.,8)
+ax1.set_xlim(10.2,14.5)
+ax1.legend(loc='top left')
+ax2.legend(loc='top left')
 ax1.set_ylabel('RA offset (mas)',fontsize=15)
 ax2.set_ylabel('Dec offset (mas)',fontsize=15)
 ax2.set_xlabel('Time on 22/06/2016 (hrs)',fontsize=15)
@@ -734,13 +695,13 @@ for ii in range(0,len(Timea)):
             model_ra=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,np.arange(bestp_final[3*ii+2],times_unique[-1],0.1))[0]
             model_dec=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,np.arange(bestp_final[3*ii+2],times_unique[-1],0.1))[1]
             ax1.errorbar(hrs_to_mjd(Timea[ii]),-1.*np.sqrt((np.concatenate(Data2[2*ii]))**2+(np.concatenate(Data2[2*ii+1]))**2),\
-                marker='o',color=col(coll(ii)),ls='',ms=10)
+                marker='o',color=col(coll(ii)),ls='',ms=10,label=comp_names[ii])
             ax1.plot(hrs_to_mjd(np.arange(bestp_final[3*ii+2],times_unique[-1],0.1)),-1.*np.sqrt(np.array(model_ra)**2+np.array(model_dec)**2),marker='',ls='-',color=col(coll(ii)))
         else:#north comp
             model_ra=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,np.arange(bestp_final[3*ii+2],times_unique[-1],0.1))[0]
             model_dec=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,np.arange(bestp_final[3*ii+2],times_unique[-1],0.1))[1]
             ax1.errorbar(hrs_to_mjd(Timea[ii]),np.sqrt((np.concatenate(Data2[2*ii]))**2+(np.concatenate(Data2[2*ii+1]))**2),\
-                marker='o',color=col(coll(ii)),ls='',ms=10)
+                marker='o',color=col(coll(ii)),ls='',ms=10,label=comp_names[ii])
             ax1.plot(hrs_to_mjd(np.arange(bestp_final[3*ii+2],times_unique[-1],0.1)),np.sqrt(np.array(model_ra)**2+np.array(model_dec)**2),marker='',ls='-',color=col(coll(ii)))
 ax1.set_xlabel('Time on 22/06/2015 (HH:MM)',fontsize=15)
 ax1.set_ylabel('Angular Separation (mas)',fontsize=15)
@@ -758,6 +719,7 @@ ax1.tick_params(axis='both', which='major', labelsize=15,length=7,width=1)
 ax1.tick_params(axis='both', which='minor', labelsize=15,length=3,width=1)
 ax1.set_xlim(57195.43750000,57195.62500000)
 ax1.set_ylim(-6,10)
+ax1.legend(loc='top left')
 plt.savefig(path_dir+'VLBA_positionfull.png',bbox_inches='tight')
 print 'VLBA corrected ang sep vs time plot saved in '+path_dir
 
@@ -773,11 +735,11 @@ for ii in range(0,len(Timea)):
         if bestp_final[3*ii+1]<0:#south comp
             model_ra=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,times_unique0)[0]
             model_dec=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,times_unique0)[1]
-            plt.plot(model_ra[np.where(model_dec<0.)[0]],model_dec[np.where(model_dec<0.)[0]],color=col(coll(ii)),ls='-',lw=2)
+            plt.plot(model_ra[np.where(model_dec<0.)[0]],model_dec[np.where(model_dec<0.)[0]],color=col(coll(ii)),ls='-',lw=2,label=comp_names[ii])
         else:#north comp
             model_ra=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,times_unique0)[0]
             model_dec=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,times_unique0)[1]
-            plt.plot(model_ra[np.where(model_dec>0.)[0]],model_dec[np.where(model_dec>0.)[0]],color=col(coll(ii)),lw=2)
+            plt.plot(model_ra[np.where(model_dec>0.)[0]],model_dec[np.where(model_dec>0.)[0]],color=col(coll(ii)),lw=2,label=comp_names[ii])
 plt.xlim(-1.5,1.5)
 plt.errorbar(0,0,markersize=8,color='k',marker='o')
 plt.xlabel('RA (mas)',fontsize=15)
@@ -786,6 +748,7 @@ plt.tick_params(axis='both',which='minor',length=3,width=1)
 plt.tick_params(axis='both',which='major',labelsize=15,length=7,width=1)
 plt.gca().invert_xaxis()
 plt.ylim(-2,2)
+plt.legend(loc='top left')
 plt.savefig(path_dir+'mcmc_PA.png',bbox_inches='tight')
 print 'VLBA PA plot saved in '+path_dir
 
