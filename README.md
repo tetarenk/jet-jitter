@@ -12,7 +12,7 @@ Assuming the motion of the jet components is ballistic, we construct a series of
 
 Here  ![equation](https://latex.codecogs.com/gif.latex?%5Cmu_%7B%7B%5Crm%20ra/dec%7D%2Ck%7D)  represents the proper motions in RA/dec, and  ![equation](https://latex.codecogs.com/gif.latex?t_%7B%7B%5Crm%20ej%7D%2Ck%7D)  represents the ejection time of the *k*th jet component, while  ![equation](https://latex.codecogs.com/gif.latex?J_%7B%7B%5Crm%20ra/dec%7D%2Ci%7D)  are the jitter parameters representing an offset in position for each *i*th image.
 
-This code uses an MCMC algorithm, implemented by the emcee package, to simultaneously solve this system of equations for all of the proper motions, ejections times and jitter parameters. Additionally, the code also offers the option to downweight components that have lower confidence.
+This code uses an MCMC algorithm (implemented by the emcee package) to simultaneously solve this system of equations for the proper motions, ejections times and jitter parameters. Additionally, the code also offers the option to downweight components that have lower confidence.
 
 ## Usage
 Input: 
@@ -20,7 +20,7 @@ Input:
 
 Output:
 * Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions versus time, corrected angular separation versus time, position angles of jet components.
-* Best-fit parameter file:
+* Best-fit parameter file (bestp_param.txt):
   * Columns are best fit value, 1 sigma lower confidence interval error, 1 sigma upper confidence interval error
   * Rows cycle through all jet components displaying the RA proper motion (mas/hr), Dec proper motion (mas/hr) and ejection time (decimal hrs) in sequence, followed by cycling through each time bin displaying the RA jitter and Dec jitter (both in mas) in sequence.
 
