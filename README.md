@@ -21,9 +21,9 @@ Input:
 Output:
 * Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions versus time, corrected angular separation versus time, position angles of jet components. Here are some examples,
 
-<img src="docs/VLBA_positions_before.png" width="350" height="250"><img src="docs/VLBA_positions_after.png" width="350" height="250">
+<img src="docs/VLBA_positions_before.png" width="350" height="350"><img src="docs/VLBA_positions_after.png" width="350" height="350">
 
-<img src="docs/VLBA_positionfull.png" width="350" height="250"><img src="docs/mcmc_PA.png" width="350" height="250">
+<img src="docs/VLBA_positionfull.png" width="250" height="250"><img src="docs/mcmc_PA.png" width="250" height="250">
 
 * Best-fit parameter file (bestp_param.txt):
   * Columns are best fit value, 1 sigma lower confidence interval error, 1 sigma upper confidence interval error
