@@ -4,7 +4,7 @@ Python code that uses an Bayesian Markov-Chain Monte Carlo (MCMC) algorithm to m
 This code is implemented in the publication [Miller-Jones et al. 2019, Nature, XX, XX-XX]().
 
 ## Brief Description
-Low level positional offsets can occur between individual snapshot images taken with the VLBA due to short timescale trosphospheric phase variations, and as a sideffect of the self-calibration process shifting the source positons by a fraction of the synthesized beam. These offsets effect our ability to track the motion of resolved jet components in images of X-ray binaries, and in turn accuratly measure proper motions and ejection times.
+Low level positional offsets can occur between individual snapshot images taken with the VLBA due to short timescale trophospheric phase variations, and as a sideffect of the self-calibration process shifting the source positons by a fraction of the synthesized beam. These offsets effect our ability to track the motion of resolved jet components in images of X-ray binaries, and in turn accurately measure proper motions and ejection times.
 
 Assuming the motion of the jet components is ballistic, we construct a series of linear equations with *k* ejecta components and *i* snapshot images, such that,
 
@@ -12,25 +12,17 @@ Assuming the motion of the jet components is ballistic, we construct a series of
 
 Here ![equation](https://latex.codecogs.com/gif.latex?%5Cmu_%7B%7B%5Crm%20ra/dec%7D%2Ck%7D) represents the proper motions in RA/dec, and ![equation](https://latex.codecogs.com/gif.latex?t_%7B%7B%5Crm%20ej%7D%2Ck%7D) represents the ejection time of the *k*th jet component, while ![equation](https://latex.codecogs.com/gif.latex?J_%7B%7B%5Crm%20ra/dec%7D%2Ci%7D) are the jitter parameters representing an offset in position for each *i*th image.
 
-This code uses an MCMC algorithm, implemented by the emcee package, to simultaneously solve for all of the proper motions, ejections times and jitter parameters. This code also offers the option to downweight components that have lower confidence.
+This code uses an MCMC algorithm, implemented by the emcee package, to simultaneously solve this system of equations for all of the proper motions, ejections times and jitter parameters. Additionally, the code also offers the option to downweight components that have lower confidence.
 
 ## Usage
 Input: 
-* Data file containing jet component positions (.txt) - columns are UT time, RA offset, error in RA offset, Dec offset, error in Dec offset, flux, error in flux, component name, confidence flag.
+* Data file containing jet component positions (bs249_uvmultifit_ptsrc_v3_flags_update.txt) - columns are UT time string, RA offset, error in RA offset, Dec offset, error in Dec offset (all in arcsec), flux, error in flux (all in Jy), component name, confidence flag (H=high confidence, M=medium confidence, L=low confidence, B=blended component, D=dont include in fit). 
 
 Output:
-* Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions, position angles of jet components
+* Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions versus time, corrected angular separation versus time, position angles of jet components.
 * Best-fit parameter file:
-  * Columns are best fit value, lower confidence interval error, higher confidence interval error
-  * Rows follow the convention,
-    
-    For k in jet_components:
-      * Ra proper motion
-      * Dec proper motion
-      * Ejection time
-    For i in time bins:
-      * RA jitter
-      * Dec jitter
+  * Columns are best fit value, 1 sigma lower confidence interval error, 1 sigma upper confidence interval error
+  * Rows cycle through all jet components displaying the RA proper motion (mas/hr), Dec proper motion (mas/hr) and ejection time (decimal hrs) in sequence, followed by cycling through each time bin displaying the RA jitter and Dec jitter (both in mas) in sequence.
 
 ## Requires the following python packages
 * emcee
