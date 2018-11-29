@@ -26,6 +26,7 @@ Output:
       * RA proper motion
       * Dec proper motion
       * Ejection time
+      
     Followed by a cycle through the jitter parameters for each time bin,
       * RA jitter
       * Dec jitter
