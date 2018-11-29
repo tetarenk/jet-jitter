@@ -21,14 +21,14 @@ Input:
 Output:
 * Diagnostic plots - histograms and trace plots of MCMC output, before and after jitter corrected positions, position angles of jet components
 * Best-fit parameter file:
-** Columns are best fit value, lower confidence interval error, higher confidence interval error
-** Rows cycle througfh all components showing,
-RA proper motion
-Dec proper motion
-Ejection time
-Followed by a cycle through the jitter parameters for each time bin showing,
-RA jitter
-Dec jitter
+  * Columns are best fit value, lower confidence interval error, higher confidence interval error
+  * Rows cycle through all jet components,
+      RA proper motion
+      Dec proper motion
+      Ejection time
+    Followed by a cycle through the jitter parameters for each time bin,
+      RA jitter
+      Dec jitter
 
 ## Requires the following python packages
 * emcee
