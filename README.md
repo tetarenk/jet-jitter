@@ -26,7 +26,7 @@ Output:
 
 * Best-fit parameter file (bestp_param.txt):
   * Columns are best fit value, 1 sigma lower confidence interval error, 1 sigma upper confidence interval error
-  * Rows cycle through all jet components displaying the RA proper motion (mas/hr), Dec proper motion (mas/hr) and ejection time (decimal hrs) in sequence, followed by cycling through each time bin displaying the RA jitter and Dec jitter (both in mas) in sequence.
+  * Rows cycle through all jet components (core,N3,S3,N1,S5,N8,S6,N2,N4,S7,N6,S2,N9) displaying the RA proper motion (mas/hr), Dec proper motion (mas/hr) and ejection time (decimal hrs) in sequence, followed by cycling through each time bin displaying the RA jitter and Dec jitter (both in mas) in sequence.
 
 ## Requires the following python packages
 * emcee

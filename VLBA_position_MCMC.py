@@ -83,7 +83,7 @@ def make_data_files(filename,dira):
 			flag.append(0.3)
 		elif data['Flag'][i]=='B':#blended component
 			flag.append(0.1)
-		elif data['Flag'][i]=='D':#dont fit do to non-ballistic motion (i.e., N2,N6,first 5 points for N4)
+		elif data['Flag'][i]=='D':#dont fit do to non-ballistic motion (i.e., N8,N9,first 5 points for N4)
 			flag.append(0.0)
 		else:
 			flag.append(0.)
@@ -91,23 +91,21 @@ def make_data_files(filename,dira):
 	times_unique=np.unique(times)
     #write out individual data files for each component
 	fileC=open(dira+'comps_C.txt','w')
-	fileN=open(dira+'comps_N.txt','w')
 	fileN1=open(dira+'comps_N1.txt','w')
 	fileN2=open(dira+'comps_N2.txt','w')
 	fileN3=open(dira+'comps_N3.txt','w')
 	fileN4=open(dira+'comps_N4.txt','w')
-	fileN5=open(dira+'comps_N5.txt','w')
 	fileN6=open(dira+'comps_N6.txt','w')
-	fileS=open(dira+'comps_S.txt','w')
-	fileS1=open(dira+'comps_S1.txt','w')
+	fileN8=open(dira+'comps_N8.txt','w')
+	fileN9=open(dira+'comps_N9.txt','w')
 	fileS2=open(dira+'comps_S2.txt','w')
-	fileS4=open(dira+'comps_S4.txt','w')
+	fileS3=open(dira+'comps_S3.txt','w')
 	fileS5=open(dira+'comps_S5.txt','w')
+	fileS6=open(dira+'comps_S6.txt','w')
+	fileS7=open(dira+'comps_S7.txt','w')
 	for i in range(0,len(times)):
 		if comp[i]=='C':
 			fileC.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
-		if comp[i]=='N':
-			fileN.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 		if comp[i]=='N1':
 			fileN1.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 		if comp[i]=='N2':
@@ -116,33 +114,35 @@ def make_data_files(filename,dira):
 			fileN3.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 		if comp[i]=='N4':
 			fileN4.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
-		if comp[i]=='N5':
-			fileN5.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 		if comp[i]=='N6':
 			fileN6.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
-		if comp[i]=='S':
-			fileS.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
-		if comp[i]=='S1':
-			fileS1.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
+		if comp[i]=='N8':
+			fileN8.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
+		if comp[i]=='N9':
+			fileN9.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 		if comp[i]=='S2':
 			fileS2.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
-		if comp[i]=='S4':
-			fileS4.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
+		if comp[i]=='S3':
+			fileS3.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 		if comp[i]=='S5':
 			fileS5.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
+		if comp[i]=='S6':
+			fileS6.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
+		if comp[i]=='S7':
+			fileS7.write('{0} {1} {2} {3} {4} {5}\n'.format(times[i],ra[i],raerr[i],dec[i],decerr[i],flag[i]))
 	fileC.close()
-	fileN.close()
 	fileN1.close()
 	fileN2.close()
 	fileN3.close()
 	fileN4.close()
-	fileN5.close()
 	fileN6.close()
-	fileS.close()
-	fileS1.close()
+	fileN8.close()
+	fileN9.close()
 	fileS2.close()
-	fileS4.close()
+	fileS3.close()
 	fileS5.close()
+	fileS6.close()
+	fileS7.close()
 	return(times_unique)
 
 def isclose(a, b, rel_tol=1e-09, abs_tol=0.0):
@@ -366,28 +366,28 @@ print 'All data products will be saved in '+path_dir
 print 'Reading in data files...'
 times_unique=make_data_files(path_data+'bs249_uvmultifit_ptsrc_v3_flags_update.txt',path_data)
 core=np.loadtxt(path_data+'comps_C.txt')
-N=np.loadtxt(path_data+'comps_N.txt')
 N1=np.loadtxt(path_data+'comps_N1.txt')
 N2=np.loadtxt(path_data+'comps_N2.txt')
 N3=np.loadtxt(path_data+'comps_N3.txt')
 N4=np.loadtxt(path_data+'comps_N4.txt')
-N5=np.loadtxt(path_data+'comps_N5.txt')
 N6=np.loadtxt(path_data+'comps_N6.txt')
-S=np.loadtxt(path_data+'comps_S.txt')
-S1=np.loadtxt(path_data+'comps_S1.txt')
+N8=np.loadtxt(path_data+'comps_N8.txt')
+N9=np.loadtxt(path_data+'comps_N9.txt')
 S2=np.loadtxt(path_data+'comps_S2.txt')
-S4=np.loadtxt(path_data+'comps_S4.txt')
+S3=np.loadtxt(path_data+'comps_S3.txt')
 S5=np.loadtxt(path_data+'comps_S5.txt')
+S6=np.loadtxt(path_data+'comps_S6.txt')
+S7=np.loadtxt(path_data+'comps_S7.txt')
 
 
 #make lists of all components to consider in fit
-Timea=[core[:,0],N[:,0],S[:,0],N1[:,0],S1[:,0],N2[:,0],S2[:,0],N3[:,0],N4[:,0],S4[:,0],N5[:,0],S5[:,0],N6[:,0]]
-Data=[core[:,1],core[:,3],N[:,1],N[:,3],S[:,1],S[:,3],N1[:,1],N1[:,3],S1[:,1],S1[:,3],N2[:,1],N2[:,3],S2[:,1],S2[:,3],\
-N3[:,1],N3[:,3],N4[:,1],N4[:,3],S4[:,1],S4[:,3],N5[:,1],N5[:,3],S5[:,1],S5[:,3],N6[:,1],N6[:,3]]
-Error=[core[:,2],core[:,4],N[:,2],N[:,4],S[:,2],S[:,4],N1[:,2],N1[:,4],S1[:,2],S1[:,4],N2[:,2],N2[:,4],S2[:,2],S2[:,4],\
-N3[:,2],N3[:,4],N4[:,2],N4[:,4],S4[:,2],S4[:,4],N5[:,2],N5[:,4],S5[:,2],S5[:,4],N6[:,2],N6[:,4]]
-FLAGs=[core[:,5],N[:,5],S[:,5],N1[:,5],S1[:,5],N2[:,5],S2[:,5],N3[:,5],N4[:,5],S4[:,5],N5[:,5],S5[:,5],N6[:,5]]
-comp_names=['core','N','S','N1','S1','N2','S2','N3','N4','S4','N5','S5','N6']
+Timea=[core[:,0],N3[:,0],S3[:,0],N1[:,0],S5[:,0],N8[:,0],S6[:,0],N2[:,0],N4[:,0],S7[:,0],N6[:,0],S2[:,0],N9[:,0]]
+Data=[core[:,1],core[:,3],N3[:,1],N3[:,3],S3[:,1],S3[:,3],N1[:,1],N1[:,3],S5[:,1],S5[:,3],N8[:,1],N8[:,3],S6[:,1],S6[:,3],\
+N2[:,1],N2[:,3],N4[:,1],N4[:,3],S7[:,1],S7[:,3],N6[:,1],N6[:,3],S2[:,1],S2[:,3],N9[:,1],N9[:,3]]
+Error=[core[:,2],core[:,4],N3[:,2],N3[:,4],S3[:,2],S3[:,4],N1[:,2],N1[:,4],S5[:,2],S5[:,4],N8[:,2],N8[:,4],S6[:,2],S6[:,4],\
+N2[:,2],N2[:,4],N4[:,2],N4[:,4],S7[:,2],S7[:,4],N6[:,2],N6[:,4],S2[:,2],S2[:,4],N9[:,2],N9[:,4]]
+FLAGs=[core[:,5],N3[:,5],S3[:,5],N1[:,5],S5[:,5],N8[:,5],S6[:,5],N2[:,5],N4[:,5],S7[:,5],N6[:,5],S2[:,5],N9[:,5]]
+comp_names=['core','N3','S3','N1','S5','N8','S6','N2','N4','S7','N6','S2','N9']
 
 
 #set RA/Dec initial jitter params (in mas) to the core offset over time
@@ -402,23 +402,23 @@ jitt=list(it.next() for it in itertools.cycle(iters))
 #[mu_ra (mas/h), mu_dec (mas/h),tej (decimal hours)]
 print 'Setting initial guesses for component proper motions and ejection times...'
 pcore=[0.0 ,0.0, 0.0]#core is assumed to be stationary, and will not be included in fit
-pn=[-0.15, 0.70 ,10.9]
-ps=[0.097, -0.46, 11.1]
+pn3=[-0.15, 0.70 ,10.9]
+ps3=[0.097, -0.46, 11.1]
 pn1=[-0.26, 1.03, 7.0]
-ps1=[0.44, -1.83 ,11.8]
-pn2=[0.0,0.0,0.0]#not included in fit due to non-ballistic motion, so set to zero
-ps2=[0.12, -0.26, 12.4]
-pn3=[0.002, 0.79, 10.6]
+ps5=[0.44, -1.83 ,11.8]
+pn8=[0.0,0.0,0.0]#not included in fit due to non-ballistic motion, so set to zero
+ps6=[0.12, -0.26, 12.4]
+pn2=[0.002, 0.79, 10.6]
 pn4=[-0.07, 0.18, 11.7]
-ps4=[-0.0036 ,-1.42, 12.5]
-pn5=[-0.23, 0.42 ,11.1]
-ps5=[0.00037 ,-0.40 ,10.4]
-pn6=[0.0,0.0,0.0]#not included in fit due to non-ballistic motion, so set to zero
+ps7=[-0.0036 ,-1.42, 12.5]
+pn6=[-0.23, 0.42 ,11.1]
+ps2=[0.00037 ,-0.40 ,10.4]
+pn9=[0.0,0.0,0.0]#not included in fit due to non-ballistic motion, so set to zero
 
 
 #initial guess array
 print 'Configuring initial guess array...'
-guess=pcore+pn+ps+pn1+ps1+pn2+ps2+pn3+pn4+ps4+pn5+ps5+pn6+jitt
+guess=pcore+pn3+ps3+pn1+ps5+pn8+ps6+pn2+pn4+ps7+pn6+ps2+pn9+jitt
 tinitlst=[]
 for kk in range(0,len(Timea)):
     tinitlst.append(guess[3*kk+2])
@@ -439,7 +439,7 @@ print 'Number of walkers used: ',nwalkers
 print 'Defining initial position of walkers...'
 fixp=np.zeros(len(guess), dtype=bool)
 
-#we will not include the core, N2, or N6 in the fit, so we fix their paramters at 0.0 here.
+#we will not include the core, N8, or N9 in the fit, so we fix their paramters at 0.0 here.
 fixp[0]=True
 fixp[1]=True
 fixp[2]=True
@@ -488,6 +488,8 @@ for i in range(0,int(nparam)):
     print confidenceInterval(sampler.flatchain[:,i],1)
 bestp_file.close()
 bestp_final = np.median(sampler.flatchain,axis=0)
+bestp_final_list=bestp_final.to_list()
+jitt_best=bestp_final_list[3*ncomp:]
 
 #save final walker positions
 print 'Saving final walker positions to '+path_dir+'pos.txt...'
@@ -530,7 +532,6 @@ ax2=fig.add_subplot(2,1,2,sharex=ax1)
 cm = plt.cm.get_cmap('jet',500)
 coll=matplotlib.colors.Normalize(vmin=0,vmax=len(Timea))
 col=matplotlib.cm.get_cmap('jet',500)
-print col(coll(ii))
 for ii in range(0,len(Timea)):
     if ii==0:
         ax1.errorbar(Timea[ii],Data[2*ii],yerr=Error[2*ii],marker='o',color='k',ls='',label=comp_names[ii])
@@ -556,8 +557,6 @@ print 'VLBA positions before plot saved in '+path_dir
 print 'Plotting positions after correction...'
 core_off_raa=comp_fix(path_data+'comps_C.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
 core_off_deca=comp_fix(path_data+'comps_C.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
-N_off_raa=comp_fix(path_data+'comps_N.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
-N_off_deca=comp_fix(path_data+'comps_N.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 N1_off_raa=comp_fix(path_data+'comps_N1.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
 N1_off_deca=comp_fix(path_data+'comps_N1.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 N2_off_raa=comp_fix(path_data+'comps_N2.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
@@ -566,24 +565,26 @@ N3_off_raa=comp_fix(path_data+'comps_N3.txt',path_dir+'bestp_param.txt',ncomp,ti
 N3_off_deca=comp_fix(path_data+'comps_N3.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 N4_off_raa=comp_fix(path_data+'comps_N4.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
 N4_off_deca=comp_fix(path_data+'comps_N4.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
-N5_off_raa=comp_fix(path_data+'comps_N5.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
-N5_off_deca=comp_fix(path_data+'comps_N5.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 N6_off_raa=comp_fix(path_data+'comps_N6.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
 N6_off_deca=comp_fix(path_data+'comps_N6.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
-S_off_raa=comp_fix(path_data+'comps_S.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
-S_off_deca=comp_fix(path_data+'comps_S.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
-S1_off_raa=comp_fix(path_data+'comps_S1.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
-S1_off_deca=comp_fix(path_data+'comps_S1.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
+N8_off_raa=comp_fix(path_data+'comps_N8.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
+N8_off_deca=comp_fix(path_data+'comps_N8.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
+N9_off_raa=comp_fix(path_data+'comps_N9.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
+N9_off_deca=comp_fix(path_data+'comps_N9.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 S2_off_raa=comp_fix(path_data+'comps_S2.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
 S2_off_deca=comp_fix(path_data+'comps_S2.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
-S4_off_raa=comp_fix(path_data+'comps_S4.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
-S4_off_deca=comp_fix(path_data+'comps_S4.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]    
+S3_off_raa=comp_fix(path_data+'comps_S3.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
+S3_off_deca=comp_fix(path_data+'comps_S3.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 S5_off_raa=comp_fix(path_data+'comps_S5.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
 S5_off_deca=comp_fix(path_data+'comps_S5.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
+S6_off_raa=comp_fix(path_data+'comps_S6.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
+S6_off_deca=comp_fix(path_data+'comps_S6.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]    
+S7_off_raa=comp_fix(path_data+'comps_S7.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[0]
+S7_off_deca=comp_fix(path_data+'comps_S7.txt',path_dir+'bestp_param.txt',ncomp,times_unique)[1]
 
-Data2=[core_off_raa, core_off_deca, N_off_raa ,N_off_deca,S_off_raa, S_off_deca,N1_off_raa,N1_off_deca,S1_off_raa,\
-S1_off_deca,N2_off_raa,N2_off_deca,S2_off_raa,S2_off_deca,N3_off_raa,N3_off_deca,N4_off_raa,N4_off_deca,\
-S4_off_raa,S4_off_deca,N5_off_raa,N5_off_deca,S5_off_raa,S5_off_deca,N6_off_raa,N6_off_deca]
+Data2=[core_off_raa, core_off_deca, N3_off_raa ,N3_off_deca,S3_off_raa, S3_off_deca,N1_off_raa,N1_off_deca,S5_off_raa,\
+S5_off_deca,N8_off_raa,N8_off_deca,S6_off_raa,S6_off_deca,N2_off_raa,N2_off_deca,N4_off_raa,N4_off_deca,\
+S7_off_raa,S7_off_deca,N6_off_raa,N6_off_deca,S2_off_raa,S2_off_deca,N9_off_raa,N9_off_deca]
 
 fig=plt.figure(figsize=(10,10))
 ax1=fig.add_subplot(2,1,1)
@@ -662,12 +663,12 @@ plt.savefig(path_dir+'VLBA_positionfull.png',bbox_inches='tight')
 print 'VLBA corrected ang sep vs time plot saved in '+path_dir
 
 print 'Plotting position angles of components...'
-fig=plt.figure(figsize=(15,10))
+fig=plt.figure(figsize=(5,10))
 ax1=fig.add_subplot(1,1,1)
 cm = plt.cm.get_cmap('jet',500)
 coll=matplotlib.colors.Normalize(vmin=0,vmax=len(Timea))
 col=matplotlib.cm.get_cmap('jet',500)
-times_unique0=np.arange(1,28,0.1)
+times_unique0=np.arange(1,48,0.1)
 for ii in range(0,len(Timea)):
     if ii !=0:
         if bestp_final[3*ii+1]<0:#south comp
@@ -678,14 +679,14 @@ for ii in range(0,len(Timea)):
             model_ra=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,times_unique0)[0]
             model_dec=bulk_motion_model([bestp_final[3*ii],bestp_final[3*ii+1],bestp_final[3*ii+2]]+jitt_best,times_unique0)[1]
             plt.plot(model_ra[np.where(model_dec>0.)[0]],model_dec[np.where(model_dec>0.)[0]],color=col(coll(ii)),lw=2,label=comp_names[ii])
-plt.xlim(-1.5,1.5)
+plt.xlim(-2,2)
 plt.errorbar(0,0,markersize=8,color='k',marker='o')
 plt.xlabel('RA (mas)',fontsize=15)
 plt.ylabel('DEC (mas)',fontsize=15)
 plt.tick_params(axis='both',which='minor',length=3,width=1)
 plt.tick_params(axis='both',which='major',labelsize=15,length=7,width=1)
 plt.gca().invert_xaxis()
-plt.ylim(-2,2)
+plt.ylim(-5,5)
 plt.legend(loc='top left')
 plt.savefig(path_dir+'mcmc_PA.png',bbox_inches='tight')
 print 'VLBA PA plot saved in '+path_dir
