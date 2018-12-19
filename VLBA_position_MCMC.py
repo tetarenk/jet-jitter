@@ -362,7 +362,8 @@ print 'All data products will be saved in '+path_dir
 
 
 #read in component position data files
-#FORMAT - start time in UT (e.g., 140941 is 14:09:41 UT), RA RAerr Dec Decerr offsets from reference position in arcsec
+#FORMAT - start time in UT (e.g., 140941 is 14:09:41 UT), RA RAerr Dec Decerr offsets
+#from reference position in arcsec, flux and error in Jy, component name, confidence flag
 print 'Reading in data files...'
 times_unique=make_data_files(path_data+'bs249_uvmultifit_ptsrc_v3_flags_update.txt',path_data)
 core=np.loadtxt(path_data+'comps_C.txt')
