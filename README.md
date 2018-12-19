@@ -1,7 +1,7 @@
 # jet-jitter
-Python code that uses an Bayesian Markov-Chain Monte Carlo (MCMC) algorithm to model and correct for small-scale positional offsets in snapshot Very Long Baseline Array (VLBA) images of the jets from X-ray binary V404 Cygni.
+Python code that uses a Bayesian Markov-Chain Monte Carlo (MCMC) algorithm to model and correct for small-scale positional offsets in snapshot Very Long Baseline Array (VLBA) images of the jets from X-ray binary V404 Cygni.
 
-This code is used for analysis of the data presented in the publication [Miller-Jones et al. 2019, Nature, XX, XX-XX]().
+This code is used for analysis of the data presented in the publication [Miller-Jones et al. 2019, Nature, Submitted]().
 
 ## Brief Description
 Low level positional offsets can occur between individual snapshot images taken with the VLBA due to short timescale trophospheric phase variations, and as a side-effect of the self-calibration process shifting the source positons by a fraction of the synthesized beam. These offsets effect our ability to track the motion of resolved jet components in images of V404 Cygni, and in turn prevent us from accurately measuring the proper motions and ejection times of the jet components.
